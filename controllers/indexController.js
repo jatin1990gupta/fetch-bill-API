@@ -25,6 +25,20 @@ exports.postNewUser = (req, res, next) => {
     })
 }
 
+exports.fetchNewBill = (req, res, next) => {
+  const sId = req.body.sId;
+  Bill.findOne({ sId: sId })
+    .then(bill => {
+      res.status(200).json(bill);
+    })
+    .catch(err => {
+      res.status(400).json({
+        status: "400",
+        message: "User Not Found"
+      })
+    });
+}
+
 exports.postNewBill = (req, res, next) => {
   const sId = req.body.sId;
   const billMonth = req.body.billMonth;
@@ -45,11 +59,13 @@ exports.postNewBill = (req, res, next) => {
     })
     .then(result => {
       res.status(200).json({
+        status: "200",
         message: "Bill Generated."
       });
     })
     .catch(err => {
       res.status(400).json({
+        status: "400",
         message: "User Not Found"
       })
     });

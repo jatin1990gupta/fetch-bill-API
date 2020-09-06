@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get('/', indexController.getIndex);
 
+router.post('/fetchBill', indexController.fetchNewBill);
+
 router.post('/newUser', indexController.postNewUser);
 
 router.post('/newBill', indexController.postNewBill);
